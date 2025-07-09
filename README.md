@@ -4,38 +4,30 @@ Docker Desktop is a popular tool but can consume significant system resources an
 
 ---
 
-## Step 1: Enable WSL and Set to WSL 2
+## Step 1: Set to WSL 2 and Install Ubuntu LTS from Microsoft Store
 
 1. Open PowerShell as Administrator.
-2. Enable WSL feature:
-
-   ```powershell
-   dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-   ```
-3. Enable Virtual Machine Platform feature:
-
-   ```powershell
-   dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-   ```
-4. Set WSL 2 as the default version:
+2. Set WSL 2 as the default version:
 
    ```powershell
    wsl --set-default-version 2
    ```
-5. Restart your computer.
-
+3. Restart your computer.
+4. List out the Linux distributions
+   ```powershell
+   wsl --list --online
+   ```
+5. Install a version using a NAME from the output
+   ```powershell
+   wsl --install -d Ubuntu-24.04
+   ```
+6. List currently installed distros and the version of WSL
+   ```powershell
+   wsl -l -v 
+   ```
 ---
 
-## Step 2: Install Ubuntu LTS from Microsoft Store
-
-1. Open Microsoft Store.
-2. Search for "Ubuntu 22.04 LTS" (or latest LTS version).
-3. Install it.
-4. Launch Ubuntu from the Start Menu and complete the initial setup (create username and password).
-
----
-
-## Step 3: Update Ubuntu and Install Docker
+## Step 2: Update Ubuntu, Install Docker and Docker Compose
 
 1. Inside the Ubuntu terminal, update packages:
 
@@ -57,16 +49,16 @@ Docker Desktop is a popular tool but can consume significant system resources an
    ```bash
    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
    ```
-5. Update package index and install Docker:
+5. Update package index and install Docker and Docker Compose:
 
    ```bash
    sudo apt update
-   sudo apt install docker-ce docker-ce-cli containerd.io -y
+   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
    ```
-6. Start Docker service:
+6. Check Docker service status:
 
    ```bash
-   sudo service docker start
+   systemctl status docker
    ```
 7. Add your user to the `docker` group to run Docker without `sudo`:
 
@@ -77,27 +69,7 @@ Docker Desktop is a popular tool but can consume significant system resources an
 
 ---
 
-## Step 4: Install Docker Compose
-
-1. Download the latest Docker Compose binary:
-
-   ```bash
-   sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-   ```
-2. Apply executable permissions:
-
-   ```bash
-   sudo chmod +x /usr/local/bin/docker-compose
-   ```
-3. Verify installation:
-
-   ```bash
-   docker-compose --version
-   ```
-
----
-
-## Step 5 (Optional): Run Portainer for Visual Docker Management
+## Step 3 (Optional): Run Portainer for Visual Docker Management
 
 Portainer provides a lightweight GUI for managing Docker containers.
 
@@ -114,16 +86,6 @@ Portainer provides a lightweight GUI for managing Docker containers.
    ```
 3. Open your browser and navigate to `http://localhost:9000`.
 4. Set up your admin user and connect to the local Docker environment.
-
----
-
-## Summary
-
-* Enabled and configured WSL 2 on Windows.
-* Installed Ubuntu LTS from Microsoft Store.
-* Installed Docker and Docker Compose inside Ubuntu.
-* Optionally set up Portainer as a lightweight Docker GUI.
-* This setup consumes fewer resources than Docker Desktop and avoids common crashes.
 
 ---
 
