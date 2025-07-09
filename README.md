@@ -127,4 +127,10 @@ Portainer provides a lightweight GUI for managing Docker containers.
 
 ---
 
-If you want, I can help you format this nicely for Word, or add screenshots and tips — just say! Would you like me to generate a formatted version or include commands in code blocks?
+## References
+
+* https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/
+* https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+* https://docs.docker.com/engine/install/linux-postinstall/
+* https://docs.docker.com/compose/install/linux/#install-using-the-repository
+* https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-and-docker-compose-for-Ubuntu-20-04
