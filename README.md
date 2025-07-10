@@ -89,6 +89,49 @@ Portainer provides a lightweight GUI for managing Docker containers.
 
 ---
 
+## Step 4: Clone the Project
+
+1. **Create a Personal Access Token (PAT) in GitHub**
+
+   * Navigate to [GitHub Personal Access Tokens](https://github.com/settings/tokens)
+   * Click on **Generate new token**
+   * In the **Note** field, enter a descriptive name (e.g., "Project Clone Token")
+   * Set the token expiration to **90 days**
+   * Under **Select scopes**, check the box for **repo** to grant repository access
+   * Click **Generate token** and **copy** the generated token securely (you won’t be able to see it again)
+
+2. **Create a folder for the project on your Ubuntu machine**
+
+   * Open your terminal
+   * Run:
+
+     ```bash
+     mkdir ~/my-project-folder
+     cd ~/my-project-folder
+     ```
+
+3. **Clone the project repository using your Personal Access Token**
+
+   * Use the HTTPS clone URL for the repository
+   * When prompted for a username, enter your GitHub username
+   * When prompted for a password, paste your Personal Access Token
+   * Example:
+
+     ```bash
+     git clone https://github.com/username/repository.git
+     ```
+
+4. **Store your credentials locally for future Git commands**
+
+   * Configure Git to save your credentials permanently by running:
+
+     ```bash
+     git config --global credential.helper store
+     ```
+   * After this, Git will remember your username and token, so you won’t need to enter them every time
+
+---
+
 ## References
 
 * https://documentation.ubuntu.com/wsl/stable/howto/install-ubuntu-wsl2/
